@@ -1,0 +1,52 @@
+<RelativeLayout
+    android:id="@+id/popupIncommingCall"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <!-- Avatar or Caller's Image -->
+    <ImageView
+        android:id="@+id/imageAvatar"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:src="@drawable/ic_default_avatar"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginEnd="16dp"/>
+
+    <!-- Caller's Information -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/imageAvatar"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textCallerName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="John Doe"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/textCallDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Incoming Call"
+            android:textSize="14sp"
+            android:textColor="@android:color/darker_gray"/>
+    </LinearLayout>
+
+    <!-- Close Button -->
+    <ImageView
+        android:id="@+id/imageClose"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/ic_close"
+        android:layout_centerVertical="true"
+        android:layout_alignParentEnd="true"
+        android:clickable="true"
+        android:onClick="onCloseButtonClick"/>
+</RelativeLayout>

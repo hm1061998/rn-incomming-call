@@ -1,0 +1,79 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_CALL_LOG" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
+    <application
+      android:name=".MainApplication"
+      android:label="@string/app_name"
+      android:icon="@mipmap/ic_launcher"
+      android:roundIcon="@mipmap/ic_launcher_round"
+      android:allowBackup="false"
+      android:theme="@style/AppTheme">
+      <activity
+        android:name=".MainActivity"
+        android:label="@string/app_name"
+        android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
+        android:launchMode="singleTask"
+        android:windowSoftInputMode="adjustResize"
+        android:exported="true">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+         <intent-filter>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data
+              android:scheme="myapp"
+              android:host="*" />
+         </intent-filter>
+      </activity>
+
+      <service
+          android:name="com.rnincommingcall.RNIncommingCallService"
+          android:exported="true">
+      </service>
+      <!-- <service
+          android:name="com.rnincommingcall.IncomingCallService"
+          android:exported="true">
+      </service> -->
+
+      <service
+        android:name="com.rnincommingcall.YourForegroundService"
+        android:enabled="true"
+        android:exported="true" />
+
+        <service
+          android:name="com.rnincommingcall.CallService"
+          android:permission="android.permission.BIND_INCALL_SERVICE">
+          <meta-data
+              android:name="android.telecom.IN_CALL_SERVICE_UI"
+              android:value="true" />
+          <intent-filter>
+              <action android:name="android.telecom.InCallService" />
+          </intent-filter>
+      </service>
+
+      <receiver 
+        android:name="com.rnincommingcall.RNIncommingCallReciever" 
+        android:enabled="true"
+        android:exported="true">
+        <intent-filter android:priority="1000">
+          <action android:name="android.intent.action.PHONE_STATE" />
+          <action android:name="android.intent.action.NEW_OUTGOING_CALL" />
+        </intent-filter>
+      </receiver>
+
+
+        
+
+    </application>
+</manifest>
